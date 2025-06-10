@@ -9,7 +9,192 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      mobile_brands: {
+        Row: {
+          created_at: string
+          id: string
+          logo_url: string | null
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          logo_url?: string | null
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          logo_url?: string | null
+          name?: string
+        }
+        Relationships: []
+      }
+      mobile_prices: {
+        Row: {
+          city: string | null
+          created_at: string
+          id: string
+          is_current: boolean | null
+          mobile_id: string
+          price: number
+          retailer: string
+        }
+        Insert: {
+          city?: string | null
+          created_at?: string
+          id?: string
+          is_current?: boolean | null
+          mobile_id: string
+          price: number
+          retailer: string
+        }
+        Update: {
+          city?: string | null
+          created_at?: string
+          id?: string
+          is_current?: boolean | null
+          mobile_id?: string
+          price?: number
+          retailer?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mobile_prices_mobile_id_fkey"
+            columns: ["mobile_id"]
+            isOneToOne: false
+            referencedRelation: "mobiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mobiles: {
+        Row: {
+          battery: string | null
+          brand_id: string
+          camera: string | null
+          created_at: string
+          display_size: string | null
+          id: string
+          image_url: string | null
+          launch_date: string | null
+          model: string
+          operating_system: string | null
+          processor: string | null
+          ram: string | null
+          storage: string | null
+        }
+        Insert: {
+          battery?: string | null
+          brand_id: string
+          camera?: string | null
+          created_at?: string
+          display_size?: string | null
+          id?: string
+          image_url?: string | null
+          launch_date?: string | null
+          model: string
+          operating_system?: string | null
+          processor?: string | null
+          ram?: string | null
+          storage?: string | null
+        }
+        Update: {
+          battery?: string | null
+          brand_id?: string
+          camera?: string | null
+          created_at?: string
+          display_size?: string | null
+          id?: string
+          image_url?: string | null
+          launch_date?: string | null
+          model?: string
+          operating_system?: string | null
+          processor?: string | null
+          ram?: string | null
+          storage?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mobiles_brand_id_fkey"
+            columns: ["brand_id"]
+            isOneToOne: false
+            referencedRelation: "mobile_brands"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          city: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          username: string | null
+        }
+        Insert: {
+          city?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          username?: string | null
+        }
+        Update: {
+          city?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          username?: string | null
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          cons: string[] | null
+          content: string
+          created_at: string
+          id: string
+          mobile_id: string
+          pros: string[] | null
+          rating: number
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          cons?: string[] | null
+          content: string
+          created_at?: string
+          id?: string
+          mobile_id: string
+          pros?: string[] | null
+          rating: number
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          cons?: string[] | null
+          content?: string
+          created_at?: string
+          id?: string
+          mobile_id?: string
+          pros?: string[] | null
+          rating?: number
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_mobile_id_fkey"
+            columns: ["mobile_id"]
+            isOneToOne: false
+            referencedRelation: "mobiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
